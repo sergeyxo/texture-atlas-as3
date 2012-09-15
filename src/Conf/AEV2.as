@@ -49,6 +49,46 @@ package Conf
 				
 				
 			}
+			
+			
+			for each (var imgXMLList : XML in inXml.ImageDataList)
+			{
+				for each (var imgXML : XML in imgXMLList.ImageData)
+				{	
+					for (bi = 0 ; bi < s_result.length; bi++ )
+					{
+						var ra : RectangleArgs = s_result[bi];
+						bdr = BitmapDataRef(ra.args);
+						
+						
+						if (imgXML.@filename == bdr.bitmapDataInfo.bitmapDataName
+						&& imgXML.@x == bdr.bitmapDataInfo.bitmapDataRect.x
+						&& imgXML.@y == bdr.bitmapDataInfo.bitmapDataRect.y
+						&& imgXML.@w == bdr.bitmapDataInfo.bitmapDataRect.width
+						&& imgXML.@h == bdr.bitmapDataInfo.bitmapDataRect.height
+						)
+						{
+							if (String(imgXML.@desc))
+							{
+							}
+							else
+								imgXML.@desc = imgXML.@filename;
+								
+							imgXML.@filename = "mergeImage_" + ra.newBitmapDataId + ".png"
+							imgXML.@x = ra.x;
+							imgXML.@y = ra.y;
+							break;
+						}
+					}
+					
+					//trace(imgXML.toXMLString());
+				
+				}
+			}
+			
+			
+			
+			
 		
 
 			var file:File = new File();
