@@ -13,6 +13,7 @@ package  ImgMerge
 		public function dealRectangleArgsArray(a_rectArray : Vector.<RectangleArgs> , maxWidth : int  , gap : int = 1)
 		: Vector.<RectangleArgs>
 		{
+			
 			var rectArraySort : Array = [];
 			rectArraySort.length = a_rectArray.length;
 			
@@ -34,7 +35,7 @@ package  ImgMerge
 				}
 			}
 			
-			floorplane(maxWidth);
+			floorplane(maxWidth , gap);
 			
 			if (gap)
 			{
@@ -144,16 +145,26 @@ package  ImgMerge
 		{
 			var len : int = heightArray.length - width;
 			var pxh : PostionXH = new PostionXH();
-			pxh.startHeight = 99999999;
+			pxh.startHeight = int.MAX_VALUE;
+			CONFIG::ASSERT {
+				ASSERT(len >= 0 , "error len" );
+			}
 			
-			for (var i : int = len-1 ; i >=0 ; i-- )
-			{
-				var h : int = countMaxH(heightArray , width , i);
-				
-				if (h < pxh.startHeight)
+			if (len == 0) {
+				h = countMaxH(heightArray , width , i);
+				pxh.startX = 0;
+				pxh.startHeight = h;
+			}
+			else {
+				for (var i : int = len-1 ; i >=0 ; i-- )
 				{
-					pxh.startX = i;
-					pxh.startHeight = h;
+					var h : int = countMaxH(heightArray , width , i);
+					
+					if (h < pxh.startHeight)
+					{
+						pxh.startX = i;
+						pxh.startHeight = h;
+					}
 				}
 			}
 			
@@ -165,18 +176,29 @@ package  ImgMerge
 		{
 			var len : int = heightArray.length - width;
 			var pxh : PostionXH = new PostionXH();
-			pxh.startHeight = 99999999;
+			pxh.startHeight = int.MAX_VALUE;
+			CONFIG::ASSERT {
+				ASSERT(len >= 0 , "error len" );
+			}
 			
-			for (var i : int = 0 ; i < len; i++ )
-			{
-				var h : int = countMaxH(heightArray , width , i);
-				
-				if (h < pxh.startHeight)
+			if (len == 0) {
+				h = countMaxH(heightArray , width , i);
+				pxh.startX = 0;
+				pxh.startHeight = h;
+			}
+			else {
+				for (var i : int = 0 ; i < len; i++ )
 				{
-					pxh.startX = i;
-					pxh.startHeight = h;
+					var h : int = countMaxH(heightArray , width , i);
+					
+					if (h < pxh.startHeight)
+					{
+						pxh.startX = i;
+						pxh.startHeight = h;
+					}
 				}
 			}
+			
 			
 			return pxh;
 			
@@ -188,9 +210,9 @@ package  ImgMerge
 		private var widthLineSum : int;
 		private var modeSwitch : int ;
 		
-		private function floorplane(maxWidth : int , start : int = 0, end  : int = -1):void
+		private function floorplane(maxWidth : int  , gap : int , start : int = 0, end  : int = -1):void
 		{
-			
+			maxWidth += gap;
 			var total : int = rectArray.length;
 			var mode1 : int = 1;
 			

@@ -153,17 +153,18 @@ package
 			for each (var bdi : BitmapDataInfo in s_bitmapDataInfoArray)
 			{
 				//trace(bdr.bitmapDataInfo.bitmapDataName , bdr.bitmapDataInfo.bitmapData)
-				
-				
+				if (w < bdi.bitmapDataRect.width)
+					return null;
+					
 				rawRectArray.push(new RectangleArgs(
 					bdi.bitmapDataRect.x
-					,bdi.bitmapDataRect.x
+					,bdi.bitmapDataRect.y
 					,bdi.bitmapDataRect.width
 					,bdi.bitmapDataRect.height
 					,bdi
 				));
 			}
-			
+			//trace(w , space);
 			var raWithBitmapDataInfoArray : Vector.<RectangleArgs> = new FloorPlane().dealRectangleArgsArray(rawRectArray , w , space);
 			var raWithBitmapDataRefArray : Vector.<RectangleArgs> = new Vector.<RectangleArgs>();
 			
