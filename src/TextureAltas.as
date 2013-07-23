@@ -127,6 +127,12 @@
 				var result : Vector.<Vector.<RectangleArgs>> = 
 				 BitmapDataInfoMgr.deal( int(m_tb.widthInput.text) , int(m_tb.spaceInput.text) );
 				
+				 if (result == null)
+				 {
+					trace("width" + int(m_tb.widthInput.text) + "is too small!!");
+					return;
+				 }
+				 
 				 s_result = result[1];
 				 createBmp(result[0]);
 				 

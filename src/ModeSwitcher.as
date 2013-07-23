@@ -2,6 +2,7 @@ package
 {
 	import Conf.AEV2;
 	import Conf.Aurora;
+	import Conf.AvtMote;
 	import flash.display.Sprite;
 	import flash.text.TextField;
 	import flash.text.TextFieldType;
@@ -37,7 +38,7 @@ package
 			
 			
 			btn = BSSButton.createSimpleBSSButton(20, 20, "Aurora" , true, m_areaArray);
-			btn.x = btn.x + btn.width + 5;
+			btn.x = btnOld.x + btnOld.width + 5;
 			btn.y = 5 ;
 			btn.statusMode = true;
 			addChild(btn) ;
@@ -48,6 +49,20 @@ package
 				TextureAltas.inputFileFilterArray = Aurora.inputFileFilterArray;
 				TextureAltas.outputFileFilterArray = Aurora.outputFileFilterArray;
 			}
+			
+			btn = BSSButton.createSimpleBSSButton(20, 20, "AvtMote" , true, m_areaArray);
+			btn.x = btnOld.x + btnOld.width + 5;
+			btn.y = 5 ;
+			btn.statusMode = true;
+			addChild(btn) ;
+			btnOld = btn;
+			btn.releaseFunction = function (btn:BSSButton):void {
+				TextureAltas.inputFunction = AvtMote.input;
+				TextureAltas.outputFunction = AvtMote.output;
+				TextureAltas.inputFileFilterArray = AvtMote.inputFileFilterArray;
+				TextureAltas.outputFileFilterArray = AvtMote.outputFileFilterArray;
+			}
+			
 		}
 		
 		public override function dispose()
