@@ -69,6 +69,7 @@
 			m_il.height = 540;
 			m_il.width = 1050;
 			m_il.x = 4;
+			m_il.heightMode = false;
 			
 			addChild(m_il).y = 30;
 			
@@ -129,7 +130,7 @@
 				
 				 if (result == null)
 				 {
-					trace("width" + int(m_tb.widthInput.text) + "is too small!!");
+					trace("width " + int(m_tb.widthInput.text) + " is too small!!");
 					return;
 				 }
 				 
@@ -266,14 +267,18 @@
 				
 				var btnSp : Sprite = new Sprite();
 				btnSp.addChild(bmp);
+				
 				var sp : Sprite = new Sprite();
-				sp.addChild(new Bitmap(bmp.bitmapData));
-				sp.addChild(new Bitmap(bmp2.bitmapData)).alpha = 0.5;
+					sp.addChild(new Bitmap(bmp.bitmapData));
+					sp.addChild(new Bitmap(bmp2.bitmapData)).alpha = 0.5;
 				btnSp.addChild( sp);
+				
 				var textField : TextField = new TextField();
 				textField.y = bmp.bitmapData.height + 10;
 				textField.width = 120;
+				textField.height = 30;
 				textField.text = "" +  bmp.bitmapData.width + "*" + bmp.bitmapData.height;
+				
 				btnSp.addChild( textField);
 
 				btnSp.addChild( bmp2);
