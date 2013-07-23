@@ -46,10 +46,9 @@ package Conf
 				if (xml.name.text().indexOf("#FLIP") != -1)
 				{
 					xml.rectX = int(xml.rectX.text()) - int(xml.rectW.text());
-					xml.name = "mergeImage_" + s_result[bi].newBitmapDataId + ".png#FLIP";
 				}
-				else
-					xml.name = "mergeImage_" + s_result[bi].newBitmapDataId + ".png"
+					
+				xml.filename = "mergeImage_" + s_result[bi].newBitmapDataId + ".png"
 				
 				
 				//trace("+++" + xml.toXMLString());
@@ -127,7 +126,7 @@ package Conf
 				
 			{
 				//trace(adfXML);
-				if ( String(tXML.name.text()))
+				if ( String(tXML.filename.text()))
 				{
 					//trace(adfXML.toXMLString());
 					
@@ -136,13 +135,11 @@ package Conf
 					bdi.bitmapDataRect.y = int(tXML.rectY.text());
 					bdi.bitmapDataRect.width = int(tXML.rectW.text());
 					bdi.bitmapDataRect.height = int(tXML.rectH.text());
-					bdi.bitmapDataName = String(tXML.name.text());
+					bdi.bitmapDataName = String(tXML.filename.text());
 					trace(bdi.bitmapDataRect , bdi.bitmapDataName);
-					var idx : int = bdi.bitmapDataName.indexOf("#FLIP");
+					var idx : int = (tXML.name.text()).indexOf("#FLIP");
 					if (idx != -1)
 					{
-						bdi.bitmapDataName = bdi.bitmapDataName.substr(0 , idx);
-						
 						bdi.bitmapDataRect.x += bdi.bitmapDataRect.width;
 						bdi.bitmapDataRect.width = -bdi.bitmapDataRect.width;
 						
