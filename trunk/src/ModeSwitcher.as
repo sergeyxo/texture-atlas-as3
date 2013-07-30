@@ -30,10 +30,10 @@ package
 			btnOld = btn;
 			
 			btn.releaseFunction = function (btn:BSSButton):void {
-				TextureAltas.inputFunction = AEV2.input;
-				TextureAltas.outputFunction = AEV2.output;
-				TextureAltas.inputFileFilterArray = AEV2.inputFileFilterArray;
-				TextureAltas.outputFileFilterArray = AEV2.outputFileFilterArray;
+				TextureAtlas.inputFunction = AEV2.input;
+				TextureAtlas.outputFunction = AEV2.output;
+				TextureAtlas.inputFileFilterArray = AEV2.inputFileFilterArray;
+				TextureAtlas.outputFileFilterArray = AEV2.outputFileFilterArray;
 			}
 			
 			
@@ -44,10 +44,10 @@ package
 			addChild(btn) ;
 			btnOld = btn;
 			btn.releaseFunction = function (btn:BSSButton):void {
-				TextureAltas.inputFunction = Aurora.input;
-				TextureAltas.outputFunction = Aurora.output;
-				TextureAltas.inputFileFilterArray = Aurora.inputFileFilterArray;
-				TextureAltas.outputFileFilterArray = Aurora.outputFileFilterArray;
+				TextureAtlas.inputFunction = Aurora.input;
+				TextureAtlas.outputFunction = Aurora.output;
+				TextureAtlas.inputFileFilterArray = Aurora.inputFileFilterArray;
+				TextureAtlas.outputFileFilterArray = Aurora.outputFileFilterArray;
 			}
 			
 			btn = BSSButton.createSimpleBSSButton(20, 20, "AvtMote" , true, m_areaArray);
@@ -57,10 +57,10 @@ package
 			addChild(btn) ;
 			btnOld = btn;
 			btn.releaseFunction = function (btn:BSSButton):void {
-				TextureAltas.inputFunction = AvtMote.input;
-				TextureAltas.outputFunction = AvtMote.output;
-				TextureAltas.inputFileFilterArray = AvtMote.inputFileFilterArray;
-				TextureAltas.outputFileFilterArray = AvtMote.outputFileFilterArray;
+				TextureAtlas.inputFunction = AvtMote.input;
+				TextureAtlas.outputFunction = AvtMote.output;
+				TextureAtlas.inputFileFilterArray = AvtMote.inputFileFilterArray;
+				TextureAtlas.outputFileFilterArray = AvtMote.outputFileFilterArray;
 			}
 			
 		}
