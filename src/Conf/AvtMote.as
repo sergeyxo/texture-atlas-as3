@@ -84,7 +84,7 @@ package Conf
 			}catch(e:Error){
 			}	
 			
-			trace(dirUrl);
+			//trace(dirUrl);
 
 			for (var i : int = 0; i < bitmapDataArray.length ; i++)
 			{
@@ -122,7 +122,7 @@ package Conf
 
 		public static function addTexture(tXML  : XML) : void
 		{
-			trace(tXML);
+			//trace(tXML);
 				
 			{
 				//trace(adfXML);
@@ -136,14 +136,14 @@ package Conf
 					bdi.bitmapDataRect.width = int(tXML.rectW.text());
 					bdi.bitmapDataRect.height = int(tXML.rectH.text());
 					bdi.bitmapDataName = String(tXML.filename.text());
-					trace(bdi.bitmapDataRect , bdi.bitmapDataName);
+					//trace(bdi.bitmapDataRect , bdi.bitmapDataName);
 					var idx : int = (tXML.name.text()).indexOf("#FLIP");
 					if (idx != -1)
 					{
 						bdi.bitmapDataRect.x += bdi.bitmapDataRect.width;
 						bdi.bitmapDataRect.width = -bdi.bitmapDataRect.width;
 						
-						trace("convert to" , bdi.bitmapDataRect , bdi.bitmapDataName);
+						//trace("convert to" , bdi.bitmapDataRect , bdi.bitmapDataName);
 					}
 					
 					
@@ -183,6 +183,14 @@ package Conf
 				
 				if (hairXML.Texture2D != undefined && hairXML.Texture2D[0])
 					addTexture(hairXML.Texture2D[0]);
+			}
+			
+			for each ( var bodyXML : XML in inXml.ModuleBody.ModuleBodyFrames.ModuleBodyFrame)
+			{
+				//trace(eyeXML);
+				
+				if (bodyXML.Texture2D != undefined && bodyXML.Texture2D[0])
+					addTexture(bodyXML.Texture2D[0]);
 			}
 		}
 		
