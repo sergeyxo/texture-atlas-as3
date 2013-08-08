@@ -192,6 +192,29 @@ package Conf
 				if (bodyXML.Texture2D != undefined && bodyXML.Texture2D[0])
 					addTexture(bodyXML.Texture2D[0]);
 			}
+			
+			for each ( var mouthXML : XML in inXml.ModuleMouth.ModuleMouthFrames.ModuleMouthFrame)
+			{
+				
+				if (mouthXML.Texture2D != undefined && mouthXML.Texture2D[0])
+					addTexture(mouthXML.Texture2D[0]);
+			}
+			
+			for each ( var earXML : XML in inXml.ModuleEar.ModuleEarFrames.ModuleEarFrame)
+			{
+				
+				if (earXML.Texture2D != undefined && earXML.Texture2D[0])
+					addTexture(earXML.Texture2D[0]);
+			}
+			
+			
+			for each ( var browXML : XML in inXml.ModuleBrow.ModuleBrowFrames.ModuleBrowFrame)
+			{
+				
+				if (browXML.Texture2D != undefined && browXML.Texture2D[0])
+					addTexture(browXML.Texture2D[0]);
+			}
+			
 		}
 		
 	}
