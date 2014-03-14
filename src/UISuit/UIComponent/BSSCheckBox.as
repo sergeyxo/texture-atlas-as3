@@ -3,7 +3,7 @@ package   UISuit.UIComponent   {
 //	IMPORT(flash.events.*)	
 	import  flash.text.* ; 	
 	import  flash.display.* ; 	
-	import Util.GRA_Util.GraphicsUtil;
+	import UISuit.UIUtils.GraphicsUtil;
 
 	/**
 	 * @author blueshell

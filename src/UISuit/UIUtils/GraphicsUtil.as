@@ -1,4 +1,4 @@
-package  Util.GRA_Util   { 
+package   UISuit.UIUtils   { 
 	
 
 	import flash.geom.*;
@@ -15,7 +15,7 @@ package  Util.GRA_Util   {
 		g.lineTo (x2*power,y2*power);
 	}
 
-	public static function DrawRect (g : Graphics, x : Number , y : Number , w : Number, h : Number , colorFill : Number , alphaFill : Number = 1 ,     thickness : Number = NaN, colorLine : Number = 0,alphaLine : Number = 1, power : Number = 1 )
+	public static function DrawRect (g : Graphics, x : Number , y : Number , w : Number, h : Number , colorFill : Number , alphaFill : Number = 1 ,     thickness : Number = NaN, colorLine : Number = 0,alphaLine : Number = NaN, power : Number = 1 )
 	: void {
 
 		if (!isNaN(alphaFill))
@@ -78,9 +78,9 @@ package  Util.GRA_Util   {
 
 
 
-				public static function GraphicsUtil_init() : void {};
+				public static function Graphics_Util_init() : void {};
             
-				public static function GraphicsUtil_dispose() : void {};
+				public static function Graphics_Util_dispose() : void {};
             
 
 

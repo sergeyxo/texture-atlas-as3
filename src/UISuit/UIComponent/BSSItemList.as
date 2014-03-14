@@ -3,7 +3,7 @@ package UISuit.UIComponent
 	import  flash.events.* ; 	
 	import  flash.text.* ; 	
 	import  flash.display.* ; 	
-	import	Util.GRA_Util.*;
+	import	UISuit.UIUtils.*;
 	
 	/**
 	 * ...
@@ -120,7 +120,7 @@ package UISuit.UIComponent
 				
 		}
 		
-		public function freshItem()
+		public function refreshItem()
 		: void
 		{
 			
