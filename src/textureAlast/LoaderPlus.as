@@ -30,6 +30,7 @@ package textureAlast
 			this.contentLoaderInfo.addEventListener(Event.COMPLETE, onComplete);
 			this.contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR, onError);
 			
+			//trace("start load img:" + prefix + url);
 			this.load(new URLRequest(prefix + url));
 			
 		}
