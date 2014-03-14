@@ -1,4 +1,4 @@
-package  ImgMerge
+package textureAlast.ImgMerge
 {
 	import flash.display.BitmapData;
 	import flash.geom.Rectangle;

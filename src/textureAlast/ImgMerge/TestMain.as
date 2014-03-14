@@ -1,4 +1,4 @@
-﻿package ImgMerge
+﻿package textureAlast.ImgMerge
 {
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
@@ -11,12 +11,12 @@
 	 * ...
 	 * @author blueshell
 	 */
-	public class Main extends Sprite 
+	public class TestMain extends Sprite 
 	{
 		
 		private var bmp : Bitmap = new Bitmap();
 		private var floorPlane : FloorPlane = new FloorPlane();
-		public function Main():void 
+		public function TestMain():void 
 		{
 			if (stage) init();
 			else addEventListener(Event.ADDED_TO_STAGE, init);

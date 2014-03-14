@@ -1,4 +1,4 @@
-package  ImgMerge
+package  textureAlast.ImgMerge
 {
 	import flash.display.Stage;
 	import flash.events.MouseEvent;

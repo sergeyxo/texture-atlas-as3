@@ -1,7 +1,10 @@
-package  
+package textureAlast
 {
-	import ImgMerge.FloorPlane;
-	import ImgMerge.RectangleArgs;
+	import textureAlast.Conf.*;
+	import textureAlast.*;
+	
+	import textureAlast.ImgMerge.FloorPlane;
+	import textureAlast.ImgMerge.RectangleArgs;
 	/**
 	 * ...
 	 * @author blueshell
