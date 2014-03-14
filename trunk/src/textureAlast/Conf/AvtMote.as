@@ -22,12 +22,18 @@ package textureAlast.Conf
 		public static var inputFileFilterArray : Array = [new FileFilter("xml | amxmla", "*.amxmla;*.xml") , new FileFilter("*.*", "*.*;") ];
 		public static var outputFileFilterArray : Array = [new FileFilter("*.*", "*.amxmla;")];
 		private static var inXml : XML;
-		private static var bitmapDataArray : Vector.<BitmapData>;
+		public static var bitmapDataArray : Vector.<BitmapData>;
 		
 		public static function output(s_result :  Vector.<RectangleArgs>) : void
 		{
+			processDestFile(s_result);
+			saveDestFile();
+		}	 
+ 
+		public static function processDestFile(s_result :  Vector.<RectangleArgs>):XML
+		{
 			if (!s_result)
-				return;
+				return null;
 			bitmapDataArray = new Vector.<BitmapData>(100);
 			
 			for (var bi : int = 0 ; bi < s_result.length; bi++ )
@@ -55,20 +61,19 @@ package textureAlast.Conf
 					
 				xml.filename = "mergeImage_" + s_result[bi].newBitmapDataId + ".png"
 				
-				
 				//trace("+++" + xml.toXMLString());
-				
-				
 			}
+			return inXml;
+		}
 		
-
+		protected static function saveDestFile():void
+		{
 			var file:File = new File();
 			file.addEventListener(Event.SELECT, fileSelected); 
 			file.browseForSave("保存配置");
-			
-			
-		}	 
- 
+		}
+		
+		
 		private static function fileSelected(event : Event): void
 		{ 
 			var saveFile:File = File(event.currentTarget);

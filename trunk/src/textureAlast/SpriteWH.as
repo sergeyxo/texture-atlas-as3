@@ -4,7 +4,7 @@ package textureAlast
 	import flash.display.Sprite;
 	import flash.geom.Rectangle;
 	import UISuit.UIComponent.BSSItemList;
-	import Util.GRA_Util.GraphicsUtil;
+	import UISuit.UIUtils.GraphicsUtil;
 	/**
 	 * ...
 	 * @author blueshell
@@ -101,7 +101,7 @@ package textureAlast
 			{
 				//trace("00000000000here!!");
 				var bSSItemList :BSSItemList = BSSItemList(parent.parent);
-				bSSItemList. freshItem();
+				bSSItemList.refreshItem();
 				//bSSItemList.clearAllItem();
 				//bSSItemList.addItem(this);
 			}
