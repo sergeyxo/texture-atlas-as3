@@ -23,7 +23,7 @@
 	import UISuit.UIComponent.BSSItemList;
 	import UISuit.UIComponent.BSSItemListScrollBar;
 	import UISuit.UIComponent.BSSScrollBar;
-	import Util.GRA_Util.GraphicsUtil;
+	import UISuit.UIUtils.GraphicsUtil;
 	
 	import textureAlast.Conf.*;
 	import textureAlast.*;

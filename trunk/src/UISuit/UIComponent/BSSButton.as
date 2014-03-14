@@ -2,10 +2,11 @@ package   UISuit.UIComponent   {
 	import  flash.events.* ; 	
 	import  flash.text.* ; 	
 	import  flash.display.* ; 	
+	import UISuit.UIUtils.GraphicsUtil;
 	
 	//import BSS.Debugger.*;
 
-	import Util.GRA_Util.*  ;  	
+	import UISuit.UIUtils.*  ;  	
 	//import BSS.Main.*;
 
     // import BSS.Spec.*;

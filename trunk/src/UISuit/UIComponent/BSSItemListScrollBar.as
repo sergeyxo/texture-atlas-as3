@@ -3,7 +3,7 @@ package UISuit.UIComponent
 	import  flash.events.* ; 	
 	import  flash.text.* ; 	
 	import  flash.display.* ; 	
-	import	Util.GRA_Util.*;
+	import	UISuit.UIUtils.*;
 	import  UISuit.UIComponent.BSSScrollBar;
 	/**
 	 * ...
@@ -58,10 +58,10 @@ package UISuit.UIComponent
 		}
 		public var heightMode : Boolean = true;
 		
-		override public function freshItem()
+		override public function refreshItem()
 		: void
 		{
-			super.freshItem();
+			super.refreshItem();
 			
 			if (m_scrollBar)
 			{	

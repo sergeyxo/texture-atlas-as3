@@ -7,7 +7,7 @@ package   UISuit.UIComponent   {
 	import  flash.geom.Rectangle;
 
 
-	import  Util.GRA_Util.*  ;  	
+	import  UISuit.UIUtils.*  ;  	
 	//import  BSS.Main.*;
 	//import BSS.Engine.*;
 
