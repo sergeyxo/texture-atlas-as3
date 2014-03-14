@@ -1,4 +1,4 @@
-package Conf 
+package textureAlast.Conf 
 {
 	import flash.display.BitmapData;
 	import flash.events.Event;
@@ -7,7 +7,9 @@ package Conf
 	import flash.filesystem.FileStream;
 	import flash.net.FileFilter;
 	import flash.utils.ByteArray;
-	import ImgMerge.RectangleArgs;
+	import textureAlast.*;
+	import textureAlast.ImgMerge.*;
+	
 	/**
 	 * ...
 	 * @author blueshell

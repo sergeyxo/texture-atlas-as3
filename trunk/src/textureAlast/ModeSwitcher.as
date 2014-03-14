@@ -1,8 +1,8 @@
-package  
+package textureAlast
 {
-	import Conf.AEV2;
-	import Conf.Aurora;
-	import Conf.AvtMote;
+	import  textureAlast.Conf.*;
+
+
 	import flash.display.Sprite;
 	import flash.text.TextField;
 	import flash.text.TextFieldType;

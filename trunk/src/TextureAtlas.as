@@ -1,7 +1,6 @@
 ﻿package 
 {
-	import Conf.AEV2;
-	import Conf.Config;
+	
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
 	import flash.display.Shape;
@@ -16,8 +15,7 @@
 	import flash.net.FileReference;
 	import flash.text.TextField;
 	import flash.utils.ByteArray;
-	import ImgMerge.ColorSample;
-	import ImgMerge.RectangleArgs;
+	
 	import UISuit.UIComponent.BSSButton;
 	import UISuit.UIComponent.BSSCheckBox;
 	import UISuit.UIComponent.BSSDropDownMenu;
@@ -27,6 +25,10 @@
 	import UISuit.UIComponent.BSSScrollBar;
 	import Util.GRA_Util.GraphicsUtil;
 	
+	import textureAlast.Conf.*;
+	import textureAlast.*;
+	import textureAlast.ImgMerge.*;
+
 	/**
 	 * ...
 	 * @author blueshell
