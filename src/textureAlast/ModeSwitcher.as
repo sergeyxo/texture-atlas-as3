@@ -63,6 +63,19 @@ package textureAlast
 				TextureAtlas.outputFileFilterArray = AvtMote.outputFileFilterArray;
 			}
 			
+			btn = BSSButton.createSimpleBSSButton(20, 20, "Mnme" , true, m_areaArray);
+			btn.x = btnOld.x + btnOld.width + 5;
+			btn.y = 5 ;
+			btn.statusMode = true;
+			addChild(btn) ;
+			btnOld = btn;
+			btn.releaseFunction = function (btn:BSSButton):void {
+				TextureAtlas.inputFunction = Mnme.input;
+				TextureAtlas.outputFunction = Mnme.output;
+				TextureAtlas.inputFileFilterArray = Mnme.inputFileFilterArray;
+				TextureAtlas.outputFileFilterArray = Mnme.outputFileFilterArray;
+			}
+			
 		}
 		
 		public override function dispose()

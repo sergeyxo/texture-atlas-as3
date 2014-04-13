@@ -64,8 +64,13 @@ package textureAlast
 				if (a_bdi.bitmapDataName == (url))
 					return;
 			}
-			s_bitmapDataFileArray.push(a_bdi.bitmapDataName);
 			
+			if (!a_bdi.bitmapData)
+				s_bitmapDataFileArray.push(a_bdi.bitmapDataName);
+			else {
+				s_totalImages = s_bitmapDataRefArray.length;
+				s_loadedImages++;
+			}
 			
 			
 		}
@@ -89,6 +94,7 @@ package textureAlast
 		public static function load(preFix : String = "") : void
 		{
 			s_totalImages = s_bitmapDataFileArray.length;
+			
 			s_loadedImages = 0;
 			
 			//trace("totalImages " + s_totalImages);
