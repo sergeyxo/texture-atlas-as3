@@ -57,6 +57,7 @@
 			m_tb.btnSave.releaseFunction = onSave;
 			m_tb.btnOpen.releaseFunction = onOpen;
 			m_tb.btnMerge.releaseFunction = onMerge;
+			m_tb.checkBoxImage.selected = Config.imageForceTo2n = true;
 			m_tb.checkBoxImage.selectFunction = function (cb:BSSCheckBox):void
 			{
 				Config.imageForceTo2n = cb.selected;
