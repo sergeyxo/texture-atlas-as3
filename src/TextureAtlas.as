@@ -137,7 +137,18 @@
 					return;
 				 }
 				 
+				  
+				 
 				 s_result = result[1];
+				 
+				 for each (var dra : RectangleArgs in s_result)
+				 {
+					while(dra.height > TextureAtlas.DISMEMBER_HEIGHT)
+					{
+						TextureAtlas.DISMEMBER_HEIGHT *= 2;
+					}
+				 }
+				 
 				 createBmp(result[0]);
 				 
 
@@ -187,8 +198,11 @@
 			var bi : int;
 			var loop : int = 0;
 			var done : Boolean = true;
-			
+			var dealLoop : int;
 			do {
+				
+				
+				
 				
 				done = true;
 				wMax = 0;
@@ -211,6 +225,13 @@
 					wMax = Math.max(wMax , rectArray[bi].x + rectArray[bi].width);
 					
 					//trace(hMax , wMax)
+				}
+				
+				if (hMax == 0 || wMax == 0)
+				{
+					trace("ni ma!!!");
+					ASSERT(false , "WTF")
+					break;
 				}
 				//trace("^^^^^^^^^^^" , done, loop ,  hMax , wMax);
 				
@@ -251,33 +272,37 @@
 					
 					bdColor.fillRect(rectArray[bi] , (ColorSample.color[iColor] | 0xFF000000));
 					iColor = (iColor + 31) %  ColorSample.color.length;
+					
+					//trace("deal img: loop:" + dealLoop +  ",id:" + bi +  ",x:" + rectArray[bi].x +  ",y:" + rectArray[bi].y +  ",w:" + rectArray[bi].width +  ",h:" + rectArray[bi] .height);
+
 				}
 				
-				
+				dealLoop++;
 				
 				var bmp : Bitmap = new Bitmap(bd);
 				var bmp2 : Bitmap = new Bitmap(bdColor);
 				
+				
 				while (bmp.width > 1024)
 				{
 					bmp.scaleX /= 2;
-					bmp.scaleY /= 2;
-					
-					bmp2.scaleX /= 2;
-					bmp2.scaleY /= 2;
 				}
-				
+				var _destScale : Number = bmp.scaleX ;
+				bmp.scaleX = 1;
 				
 				var btnSp : Sprite = new Sprite();
 				btnSp.addChild(bmp);
+				bmp.scaleX = bmp.scaleY = _destScale;
 				
 				var sp : Sprite = new Sprite();
-					sp.addChild(new Bitmap(bmp.bitmapData));
-					sp.addChild(new Bitmap(bmp2.bitmapData)).alpha = 0.5;
+				sp.addChild(new Bitmap(bmp.bitmapData));
+				sp.addChild(new Bitmap(bmp2.bitmapData)).alpha = 0.5;
 				btnSp.addChild( sp);
-				
+				sp.scaleX = sp.scaleY = _destScale;
+
+								
 				var textField : TextField = new TextField();
-				textField.y = bmp.bitmapData.height + 10;
+				textField.y = bmp.bitmapData.height * _destScale + 10;
 				textField.width = 120;
 				textField.height = 30;
 				textField.text = "" +  bmp.bitmapData.width + "*" + bmp.bitmapData.height;
@@ -285,8 +310,13 @@
 				btnSp.addChild( textField);
 
 				btnSp.addChild( bmp2);
+				bmp2.scaleX = bmp2.scaleY = _destScale;
 				
-				m_il.addItem(new BSSButton(btnSp));
+				var _btn : BSSButton = new BSSButton(btnSp);
+				
+				
+				
+				m_il.addItem(_btn);
 			
 				
 				if (!done)
@@ -335,6 +365,7 @@
 					
 					m_il.addItem(shape);
 				}
+				
 				
 			} while (!done);
 		}

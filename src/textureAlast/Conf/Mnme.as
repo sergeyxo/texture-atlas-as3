@@ -186,8 +186,8 @@ package textureAlast.Conf
 					
 					for each ( var layerXML : XML in actionXML.layer)
 					{
-						var lId : int = int(String(layerXML.@id));
-						ByteArrayUtil.writeUnsignedByteOrShort(baBin , lId);
+						//var lId : int = int(String(layerXML.@id));
+						//ByteArrayUtil.writeUnsignedByteOrShort(baBin , lId);
 						
 						ByteArrayUtil.writeUnsignedByteOrShort(baBin , layerXML.frame.length());
 						

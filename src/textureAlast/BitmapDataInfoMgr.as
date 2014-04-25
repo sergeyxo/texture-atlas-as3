@@ -197,7 +197,7 @@ package textureAlast
 				}
 			}
 			
-			trace(s_bitmapDataInfoArray.length , raWithBitmapDataInfoArray.length , s_bitmapDataRefArray.length , raWithBitmapDataRefArray.length)
+			trace("BitmapDataInfoMgr " + s_bitmapDataInfoArray.length , raWithBitmapDataInfoArray.length , s_bitmapDataRefArray.length , raWithBitmapDataRefArray.length)
 			
 			return Vector.<Vector.<RectangleArgs>>([raWithBitmapDataInfoArray , raWithBitmapDataRefArray]);
 		}
