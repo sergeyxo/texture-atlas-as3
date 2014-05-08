@@ -323,6 +323,20 @@ package textureAlast.Conf
 					
 					bdi.bitmapData = bd;
 					
+					if (bdi.bitmapDataRect.width == 0)
+					{
+						tXML.@width = bd.width;
+						bdi.bitmapDataRect.width = bd.width;
+						
+					}
+					
+					if (bdi.bitmapDataRect.height == 0)
+					{
+						tXML.@height = bd.height;
+						bdi.bitmapDataRect.height = bd.height;
+						
+					}
+					
 					BitmapDataInfoMgr.addABitmapDataInfo(tXML , bdi);
 				}
 			}
