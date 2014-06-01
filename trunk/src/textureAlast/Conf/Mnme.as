@@ -95,6 +95,8 @@ package textureAlast.Conf
 			}catch(e:Error){
 			}	
 			
+			//trace(inXml.toXMLString());
+			
 			//trace(dirUrl);
 
 			var bitmapDataBAArray : Vector.<ByteArray> = new Vector.<ByteArray>();
@@ -114,9 +116,8 @@ package textureAlast.Conf
 				{
 					ba = PNGEncoder.encode(bitmapDataArray[i] );
 				}
-
+			
 				bitmapDataBAArray.push(ba);
-				
 				
 				try{
 					stream = new FileStream();
@@ -129,159 +130,172 @@ package textureAlast.Conf
 					stream.close();
 				}catch(e:Error){
 				}	
+			}
+	
 				
+			
+			
+			
+			var baBin : ByteArray = new ByteArray;
+			baBin.endian = Endian.LITTLE_ENDIAN;
+			baBin.writeUTFBytes("MNEB");
+			baBin.writeByte(1);
+			
+			trace("asset length " + inXml.asset.length());
+			
+			ByteArrayUtil.writeUnsignedByteOrShort(baBin , inXml.asset.length());
+			
+			for each ( var assetXML : XML in inXml.asset)
+			{
+				//trace(assetXML.toXMLString());
 				
-				var baBin : ByteArray = new ByteArray;
-				baBin.endian = Endian.LITTLE_ENDIAN;
-				baBin.writeUTFBytes("MNEB");
-				baBin.writeByte(1);
+				var centerX : int = -int(assetXML.@x);
+				var centerY : int = -int(assetXML.@y);
+				var imgX : int = int(assetXML.@imgX);
+				var imgY : int = int(assetXML.@imgY);
+				var width : int = int(assetXML.@width);
+				var height : int = int(assetXML.@height);
+				var xName :String = String(assetXML.@assetName);
+				var xNameId : String = xName.slice(("mergeImage_").length , xName.indexOf(".png?"));
+				var index : int = int(xNameId);
 				
-				trace("asset length " + inXml.asset.length());
+				baBin.writeByte(index);
+				baBin.writeShort(imgX);
+				baBin.writeShort(imgY);
+				baBin.writeShort(width);
+				baBin.writeShort(height);
+				baBin.writeShort(centerX);
+				baBin.writeShort(centerY);
 				
-				ByteArrayUtil.writeUnsignedByteOrShort(baBin , inXml.asset.length());
+				//if (bodyXML.Texture2D != undefined && bodyXML.Texture2D[0])
+				//	addTexture(bodyXML.Texture2D[0]);
+			}
+			
+			trace("action length " + inXml.action.length());
+			
+			ByteArrayUtil.writeUnsignedByteOrShort(baBin , inXml.action.length());
+			
+			for each ( var actionXML : XML in inXml.action)
+			{
+				var actionName : String = String(actionXML.@name);
+				if (!actionName) actionName = "";
 				
-				for each ( var assetXML : XML in inXml.asset)
+				trace(actionName + " layer length " + actionXML.layer.length());
+				
+				var l : int = 0;
+				ByteArrayUtil.writeUnsignedByteOrShort(baBin , actionName.length);
+				for (l = 0 ; l < actionName.length;l++ )
+					baBin.writeShort(actionName.charCodeAt(l));
+				
+				ByteArrayUtil.writeUnsignedByteOrShort(baBin , actionXML.layer.length());
+				
+				for each ( var layerXML : XML in actionXML.layer)
 				{
-					//trace(assetXML.toXMLString());
+					//var lId : int = int(String(layerXML.@id));
+					//ByteArrayUtil.writeUnsignedByteOrShort(baBin , lId);
 					
-					var centerX : int = -int(assetXML.@x);
-					var centerY : int = -int(assetXML.@y);
-					var imgX : int = int(assetXML.@imgX);
-					var imgY : int = int(assetXML.@imgY);
-					var width : int = int(assetXML.@width);
-					var height : int = int(assetXML.@height);
-					var xName :String = String(assetXML.@assetName);
-					var xNameId : String = xName.slice(("mergeImage_").length , xName.indexOf(".png?"));
-					var index : int = int(xNameId);
+					ByteArrayUtil.writeUnsignedByteOrShort(baBin , layerXML.frame.length());
 					
-					baBin.writeByte(index);
-					baBin.writeShort(imgX);
-					baBin.writeShort(imgY);
-					baBin.writeShort(width);
-					baBin.writeShort(height);
-					baBin.writeShort(centerX);
-					baBin.writeShort(centerY);
 					
-					//if (bodyXML.Texture2D != undefined && bodyXML.Texture2D[0])
-					//	addTexture(bodyXML.Texture2D[0]);
-				}
-				
-				trace("action length " + inXml.action.length());
-				
-				ByteArrayUtil.writeUnsignedByteOrShort(baBin , inXml.action.length());
-				
-				for each ( var actionXML : XML in inXml.action)
-				{
-					var actionName : String = String(actionXML.@name);
-					if (!actionName) actionName = "";
-					
-					trace(actionName + " layer length " + actionXML.layer.length());
-					
-					var l : int = 0;
-					ByteArrayUtil.writeUnsignedByteOrShort(baBin , actionName.length);
-					for (l = 0 ; l < actionName.length;l++ )
-						baBin.writeShort(actionName.charCodeAt(l));
-					
-					ByteArrayUtil.writeUnsignedByteOrShort(baBin , actionXML.layer.length());
-					
-					for each ( var layerXML : XML in actionXML.layer)
+					for each ( var frameXML : XML in layerXML.frame)
 					{
-						//var lId : int = int(String(layerXML.@id));
-						//ByteArrayUtil.writeUnsignedByteOrShort(baBin , lId);
+						var fIndex : int = int(String(frameXML.@index));
+						var fLength : int = int(String(frameXML.@length));
+						var fEvent : String = String(frameXML.@event);
 						
-						ByteArrayUtil.writeUnsignedByteOrShort(baBin , layerXML.frame.length());
-						
-						
-						for each ( var frameXML : XML in layerXML.frame)
+						var isEmpty : Boolean = true;
+						for each ( var elementXML : XML in frameXML.element)
 						{
-							var fIndex : int = int(String(frameXML.@index));
-							var fLength : int = int(String(frameXML.@length));
-							var fEvent : String = String(frameXML.@event);
+							var elementId : int = int(elementXML.@assetId);
+							var elementX : int = int(elementXML.@x);
+							var elementY : int = int(elementXML.@y);
+							var extname : String = elementXML.@extname;
+							if (!extname)
+								isEmpty = false;
+						}
+						
+						
+						var flag : int = 0;
+						
+						if (fLength != 1)
+							flag |= 1;
+						if (fEvent)
+							flag |= 2;
 							
-							for each ( var elementXML : XML in frameXML.element)
-							{
-								var elementId : int = int(elementXML.@assetId);
-								var elementX : int = int(elementXML.@x);
-								var elementY : int = int(elementXML.@y);
-
-							}
+						
 							
-							
-							var flag : int = 0;
-							
-							if (fLength != 1)
-								flag |= 1;
-							if (fEvent)
-								flag |= 2;
-								
+						if (isEmpty)
+							flag |= 16;
+						else {
 							if (elementX)
 								flag |= 4;
 							if (elementY)
 								flag |= 8;
-								
-							baBin.writeByte(flag);
-							ByteArrayUtil.writeUnsignedByteOrShort(baBin , fIndex);
-							if (flag & 1)
-								ByteArrayUtil.writeUnsignedByteOrShort(baBin , fLength);
-							if (flag & 2)
-							{
-								ByteArrayUtil.writeUnsignedByteOrShort(baBin , fEvent.length);
-								for (l = 0 ; l < fEvent.length;l++ )
-									baBin.writeShort(fEvent.charCodeAt(l));
-							}
+						}
 
+							
+						baBin.writeByte(flag);
+						ByteArrayUtil.writeUnsignedByteOrShort(baBin , fIndex);
+						if (flag & 1)
+							ByteArrayUtil.writeUnsignedByteOrShort(baBin , fLength);
+						if (flag & 2)
+						{
+							ByteArrayUtil.writeUnsignedByteOrShort(baBin , fEvent.length);
+							for (l = 0 ; l < fEvent.length;l++ )
+								baBin.writeShort(fEvent.charCodeAt(l));
+						}
+
+						if (!isEmpty) {
 							ByteArrayUtil.writeUnsignedByteOrShort(baBin , elementId);
 							if (flag & 4)
 								baBin.writeShort( elementX);
 							if (flag & 8)
 								baBin.writeShort( elementY);	
 						}
-						
 					}
-				}
-				
-				try {
-					saveFile.nativePath = _rawName.replace(".mmexml" , ".menb");
-					stream = new FileStream();
-					stream.open(saveFile, FileMode.WRITE);
-					stream.position = 0;
-					stream.writeBytes(baBin);
-					stream.close();
-				}catch(e:Error){
-				}
-				
-				baBin[3]++; //menc
-				
-				ByteArrayUtil.writeUnsignedByteOrShort(baBin , bitmapDataBAArray.length);
-				
-				for each (var bdba : ByteArray in bitmapDataBAArray)
-				{
-					bdba[0] ^= 0xFC;
-					bdba[1] ^= 0xBF;
-					bdba[2] ^= 0x10; //prevent dump png
-					
-					baBin.writeInt( bdba.length);
-					baBin.writeBytes(bdba);
 					
 				}
+			}
+			
+			try {
+				saveFile.nativePath = _rawName.replace(".mmexml" , ".menb");
+				stream = new FileStream();
+				stream.open(saveFile, FileMode.WRITE);
+				stream.position = 0;
+				stream.writeBytes(baBin);
+				stream.close();
+			}catch(e:Error){
+			}
+			
+			baBin[3]++; //menc
+			
+			ByteArrayUtil.writeUnsignedByteOrShort(baBin , bitmapDataBAArray.length);
+			
+			for each (var bdba : ByteArray in bitmapDataBAArray)
+			{
+				bdba[0] ^= 0xFC;
+				bdba[1] ^= 0xBF;
+				bdba[2] ^= 0x10; //prevent dump png
 				
-				
-				//ByteArrayUtil.writeUnsignedByteOrShort(baBin , xml.action.length());
-
-				//trace(baBin[1275])
-				try {
-					saveFile.nativePath = _rawName.replace(".mmexml" , ".menc");
-					stream = new FileStream();
-					stream.open(saveFile, FileMode.WRITE);
-					stream.position = 0;
-					stream.writeBytes(baBin);
-					stream.close();
-				}catch(e:Error){
-				}
-				
-				
+				baBin.writeInt( bdba.length);
+				baBin.writeBytes(bdba);
 				
 			}
+			
+			
+			//ByteArrayUtil.writeUnsignedByteOrShort(baBin , xml.action.length());
+
+			//trace(baBin[1275])
+			try {
+				saveFile.nativePath = _rawName.replace(".mmexml" , ".menc");
+				stream = new FileStream();
+				stream.open(saveFile, FileMode.WRITE);
+				stream.position = 0;
+				stream.writeBytes(baBin);
+				stream.close();
+			}catch(e:Error){
+			}
+			
 		}
 
 
